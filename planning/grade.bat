@@ -1,0 +1,43 @@
+java -Xss10m -Xmx4g -jar planning.jar ^
+-a ^
+planners/your.jar ^
+planners/bfs.jar ^
+planners/pop.jar ^
+planners/gp.jar ^
+planners/bb.jar ^
+planners/hsp.jar ^
+-d ^
+benchmarks/cake.pddl ^
+benchmarks/blocks.pddl ^
+benchmarks/cargo.pddl ^
+benchmarks/wumpus.pddl ^
+-p ^
+benchmarks/do_nothing.pddl ^
+benchmarks/eat_cake.pddl ^
+benchmarks/have_eat_cake.pddl ^
+benchmarks/easy_stack.pddl ^
+benchmarks/easy_unstack.pddl ^
+benchmarks/sussman.pddl ^
+benchmarks/reverse_2.pddl ^
+benchmarks/reverse_4.pddl ^
+benchmarks/reverse_6.pddl ^
+benchmarks/reverse_8.pddl ^
+benchmarks/reverse_10.pddl ^
+benchmarks/reverse_12.pddl ^
+benchmarks/reverse_14.pddl ^
+benchmarks/deliver_1.pddl ^
+benchmarks/deliver_2.pddl ^
+benchmarks/deliver_3.pddl ^
+benchmarks/deliver_4.pddl ^
+benchmarks/deliver_5.pddl ^
+benchmarks/deliver_return_1.pddl ^
+benchmarks/deliver_return_2.pddl ^
+benchmarks/deliver_return_3.pddl ^
+benchmarks/deliver_return_4.pddl ^
+benchmarks/deliver_return_5.pddl ^
+benchmarks/easy_wumpus.pddl ^
+benchmarks/medium_wumpus.pddl ^
+benchmarks/hard_wumpus.pddl ^
+-nl 10000 ^
+-tl 300000 ^
+-o results.html

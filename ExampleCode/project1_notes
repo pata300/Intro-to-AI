@@ -1,0 +1,363 @@
+// This list will hold all the children nodes of the root.
+//		ArrayList<State> children = new ArrayList<>();
+//		// Generate all the children nodes of the root (that is, all the
+//		// possible next states of the game.  Make sure that we do not exceed
+//		// the number of GameTree nodes that we are allowed to generate.
+//		Iterator<State> iterator = root.next().iterator();
+//		while(!root.searchLimitReached() && iterator.hasNext())
+//			children.add(iterator.next());
+//		// Choose one of the children at random.
+//		return children.get(random.nextInt(children.size()));
+		
+		//beginning of my code
+		//best-first search algorithm
+		//V is the visted nodes, initially empty
+		ArrayList<State> visited = new ArrayList<>();
+		State currentState = new State();
+		//F is the frontier, initially only the root node/state
+		//F is a min priority queue
+		PriorityQueue<State> frontier = new PriorityQueue<>();
+		frontier.add(root);
+		Iterator<State> iter = root.next().iterator();
+		// Generate all the children nodes of the root (that is, all the
+//		// possible next states of the game.  Make sure that we do not exceed
+//		// the number of GameTree nodes that we are allowed to generate.
+		while(!root.searchLimitReached() && iter.hasNext())
+			frontier.add(iter.next());
+		
+//			visted.add(frontier.poll());
+			
+		//loop
+		//if F is empty, return failure
+		while(frontier.iterator().hasNext()) {
+			currentState = frontier.peek();
+			//choose a node n to remove from F
+			//if n is a solution, return n
+			if(currentState.check == True)
+				return currentState;
+			//add n to V
+			visited.add(frontier.poll());
+		
+		
+			//for every successor s of n not in V or F
+		
+			//add s to F
+
+            //System.out.println("Beginning chooseMove");
+		
+		// This list will hold all the children nodes of the root.
+//		ArrayList<State> children = new ArrayList<>();
+//		// Generate all the children nodes of the root (that is, all the
+//		// possible next states of the game.  Make sure that we do not exceed
+//		// the number of GameTree nodes that we are allowed to generate.
+//		Iterator<State> iterator = root.next().iterator();
+//		while(!root.searchLimitReached() && iterator.hasNext())
+//			children.add(iterator.next());
+//		// Choose one of the children at random.
+//		return children.get(random.nextInt(children.size()));
+
+//best-first search algorithm
+		//V is the visted nodes, initially empty
+		//ArrayList<State> visited = new ArrayList<>();
+		//State currentState = new State();
+//		WeightedState wState;
+		//int pieceCount = root.board.countPieces(root.player);
+		//int fValue, gValue, hValue = 0;
+		//F is the frontier, initially only the root node/state
+		//F is a min priority queue
+//		PriorityQueue<WeightedState> visited = new PriorityQueue<WeightedState>(); 
+////		
+//		PriorityQueue<WeightedState> frontier = new PriorityQueue<WeightedState>();
+		
+//		wState = new WeightedState(root);
+//		frontier.offer(wState);
+//		
+//		// Generate all the children nodes of the root (that is, all the
+////		// possible next states of the game.  Make sure that we do not exceed
+////		// the number of GameTree nodes that we are allowed to generate.
+//		
+//		
+////		System.out.println("Frontier populated");
+//		
+////			visted.add(frontier.poll());
+//			
+//		//loop
+//		//if F is empty, return failure
+//		while(!frontier.isEmpty()) {
+//			
+//			//wState represents 'q'
+//			wState = frontier.poll();
+//			currentState = wState.getRoot();
+			
+			//generate 'q's successors and set their parents to q
+//			Iterator<State> iter = currentState.next().iterator();
+//			while(!currentState.searchLimitReached() && iter.hasNext()) {
+//				//WeightedState(root, f, g, h, parent)
+//				WeightedState temp = new WeightedState(iter.next(), 0, wState.getFValue(), 0, currentState);
+//				frontier.offer(temp);
+//			}
+			
+			//iterated through the successors to find their fValue
+//			Iterator<WeightedState> frontierIter = frontier.iterator();
+//			while(frontierIter.hasNext()) {
+//				//if successor is the goal, stop search
+//				if(frontierIter.next().getRoot().over == true) {
+//					wState = frontierIter.next();
+//					wState.setFValue(0);
+//					break;
+//				}
+//				
+//				System.out.println("Round: " + currentState.turn);
+//				
+//				if(currentState.turn == 0) {
+//					return frontierIter.next().getRoot();
+//				}
+//				
+//				//find the piece that moved in this current state
+//				Piece movedPiece = null;
+//				
+//				
+//				for(int i = 0; i < 8; i++) {
+//					for(int j = 0; j < 8; j++) {
+//						//System.out.println(PGN.getNewLocation(root.previous.board, root.board, root.previous.board.getPieceAt(i, j)));
+//						System.out.println(i + " " + j);
+//						System.out.println(frontierIter.next().getRoot().previous.board.getPieceAt(i,j));
+//						System.out.println("Was the previous spot null: " + frontierIter.next().getRoot().previous.board.getPieceAt(i, j) == "null");
+////						movedPiece = PGN.getNewLocation(frontierIter.next().getRoot().previous.board, frontierIter.next().getRoot().board, frontierIter.next().getRoot().previous.board.getPieceAt(i, j));
+//						if(frontierIter.next().getRoot().previous.board.pieceAt(i, j, frontierIter.next().getRoot().previous.player) && frontierIter.next().getRoot().board.pieceAt(i, j, frontierIter.next().getRoot().player))  {
+//							System.out.println("This is my piece at " + i + ", " + j);
+//							movedPiece = PGN.getNewLocation(frontierIter.next().getRoot().previous.board, frontierIter.next().getRoot().board, frontierIter.next().getRoot().previous.board.getPieceAt(i, j));
+//						}
+//					}
+//				}
+//									
+//				//successor.g = q.g + distance between successor and q
+//				frontierIter.next().setGValue(wState.getGValue() + getGScore(frontierIter.next().getRoot()));
+//				//successor.h = distance from goal to successor
+//				//use Manhattan Heuristic
+//				King badKing = frontierIter.next().getRoot().board.getKing(frontierIter.next().getRoot().player.other());
+//				frontierIter.next().setHValue(Math.abs(movedPiece.file - badKing.file) + Math.abs(movedPiece.rank - badKing.rank));
+//				//successor.f = successor.g + successor.h
+//				frontierIter.next().setFValue(frontierIter.next().getGValue() + frontierIter.next().getHValue());
+//				//if a node with the same position as successor is in the
+//				//frontier which has a lower fValue than successor, skip this successor
+//				
+//				//if a node with the same position as successor is in the
+//				//visited list which has a lower f than successor,
+//				//skip this successor otherwise, add the node to the frontier
+//				
+//			}//end of while loop
+			
+			//push wState on the visited list
+			
+//			currentState = frontier.get(frontier.size() - 1);
+//			int currentPieceCount = currentState.board.countPieces(root.player);
+//			//choose a node n to remove from F
+//			//if n is a solution, return n
+//			if(currentState.check == true) {
+//				System.out.println("Check");
+//				weight = deeperStep(currentState);
+//				wState = new WeightedState(currentState, weight);
+//				frontier.remove(frontier.size() - 1);
+//				//return currentState;
+//			} else if(currentPieceCount == pieceCount){
+//				wState = new WeightedState(currentState, 2);
+//				frontier.remove(frontier.size() - 1);
+//			} else {
+//				wState = new WeightedState(currentState);
+//				frontier.remove(frontier.size() - 1);
+//			}							
+			//add n to V
+			//visited.add(frontier.remove(frontier.size() - 1));
+			//visited.offer(wState);
+			
+			//for every successor s of n not in V or F
+			//for()
+			//add s to F
+		//}
+					
+		//return visited.get(random.nextInt(visited.size()));
+		//System.out.println(visited.peek().getWeight());
+
+
+			//going one deeper
+//	protected int deeperStep(State root) {
+//		//change to other player and have them make a random move
+//		//root.player.other();
+//		
+//		ArrayList<State> visited = new ArrayList<>();
+//		State currentState = new State();
+//		int weight = 0;
+//		int rand;
+//		int pieceCount = root.board.countPieces(root.player);
+//		
+//		//F is the frontier, initially only the root node/state
+//		//F is a min priority queue
+////		Queue<State> frontier = new Queue<>();
+//		ArrayList<State> frontier = new ArrayList<>();
+////		frontier.add(root);
+//		for(int i = 1; i <= 4; i++) {
+//			//change to other player and back
+//			root.player.other();
+//			//System.out.println(root.player);
+//			Iterator<State> iter = root.next().iterator();
+//			
+//			while(!root.searchLimitReached() && iter.hasNext())
+//				frontier.add(iter.next());
+//			
+//			//pick random move for opponent
+//			if(i % 2 == 1) {
+//				System.out.println("Computer made a choice");
+//				if(!frontier.isEmpty()) {
+//					rand = random.nextInt(frontier.size());
+//					System.out.println("\tRandom: " + rand);
+//					root = frontier.get(rand);
+//				}			
+//			} else {
+//				while(!frontier.isEmpty()) {
+//					currentState = frontier.get(frontier.size() - 1);
+//					int currentPieceCount = currentState.board.countPieces(root.player);
+//						//choose a node n to remove from F
+//						//if n is a solution, return n
+//					if(currentState.check == true && currentPieceCount == pieceCount) {
+//						//System.out.println("Check");
+//						weight += 3;
+//					} else if(currentState.check == true) {
+//						weight += 1;
+//					} else if(currentPieceCount == pieceCount) {
+//						weight += 2;
+//					}
+//					visited.add(frontier.remove(frontier.size() - 1));
+//				}
+//			}
+//				
+//			weight = 0;
+//			frontier.clear();
+//		}
+			
+		//other player iter
+//		Iterator<State> iter = root.next().iterator();
+//		// Generate all the children nodes of the root (that is, all the
+////		// possible next states of the game.  Make sure that we do not exceed
+////		// the number of GameTree nodes that we are allowed to generate.
+//		while(!root.searchLimitReached() && iter.hasNext())
+//			frontier.add(iter.next());
+//		
+//		//change player back to my bot
+//		root.player.other();
+//		
+//		//iter on my next available movies
+//		while(!root.searchLimitReached() && iter.hasNext())
+//			frontier.add(iter.next());
+//		
+//		while(!frontier.isEmpty()) {
+//			currentState = frontier.get(frontier.size() - 1);
+//				//choose a node n to remove from F
+//				//if n is a solution, return n
+//			if(currentState.check == true) {
+//					//System.out.println("Check");
+//					weight++;
+//			}
+//				
+//				//add n to V
+//			visited.add(frontier.remove(frontier.size() - 1));
+//		}
+//		
+//		System.out.println(weight);
+//		return weight;
+//			
+//	}
+		
+	//calculate the score for a given move	
+//	protected Piece findMovedPiece(State root) {
+//		Piece movedPiece = new Piece(root.player, 0, 0);
+//		for(int i = 0; i < 8; i++) {
+//			for(int j = 0; j < 8; j++) {
+//				if(root.board.getPieceAt(i, j).player != root.player.other() &&
+//						!(root.board.getPieceAt(i, j).equals(root.previous.board.getPieceAt(i, j))))  {
+//					return movedPiece = PGN.getNewLocation(root.previous.board, root.board, root.board.getPieceAt(i, j));
+//				}
+//			}
+//		}
+//		//return movedPiece;
+//	}
+	
+//	protected int getGScore(State root) {
+//		if(root.check == true) {
+//			return 2;
+//		}
+//		return 1;
+//	}
+
+
+//	protected class WeightedState implements Comparable<WeightedState> {
+//		private State root = new State();
+//		private State parent = new State();
+//		private int fValue, gValue, hValue;
+//		
+//		public WeightedState() {
+//			
+//		}
+//		
+//		public WeightedState(State root) {
+//			this.root = root;
+//			this.fValue = 0;
+//			this.gValue = 0;
+//			this.hValue = 0;
+//			this.parent = null;
+//		}
+//		
+//		public WeightedState(State root, int fValue, int gValue, int hValue, State parent) {
+//			this.root = root;
+//			this.fValue = fValue;
+//			this.gValue = gValue;
+//			this.hValue = hValue;
+//			this.parent = parent;
+//		}
+//		
+//		protected void setFValue(int fValue) {
+//			this.fValue = fValue;
+//		}
+//		
+//		protected int getFValue() {
+//			return this.fValue;
+//		}
+//		
+//		protected void setGValue(int gValue) {
+//			this.gValue = gValue;
+//		}
+//		
+//		protected int getGValue() {
+//			return this.gValue;
+//		}
+//		protected void setHValue(int hValue) {
+//			this.hValue = hValue;
+//		}
+//		
+//		protected int getHValue() {
+//			return this.hValue;
+//		}
+//		
+//		protected void setRoot(State root) {
+//			this.root = root;
+//		}
+//		
+//		protected State getRoot() {
+//			return this.root;
+//		}
+//		
+//		protected void setParent(State parent) {
+//			this.parent = parent;
+//		}
+//		
+//		protected State getParent() {
+//			return this.parent;
+//		}
+//		
+//		@Override
+//		public int compareTo(WeightedState other) {
+//			return Integer.compare(this.fValue, other.fValue);
+//		}
+//	}
+	
+
